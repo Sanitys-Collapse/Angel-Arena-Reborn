@@ -3,6 +3,7 @@ PercentDamage = PercentDamage or class({})
 function PercentDamage:_init()
 	_G.skill_callback = {}
 
+	PercentDamage:ListenAbilityCallback("item_radiance", 						Radiance )
 	PercentDamage:ListenAbilityCallback("item_radiance_2", 						Radiance )
 	PercentDamage:ListenAbilityCallback("item_radiance_3", 						Radiance )
 	PercentDamage:ListenAbilityCallback("techies_land_mines", 					TechiesMine )
@@ -91,6 +92,7 @@ function PercentDamage:_init()
 		"pudge_meat_hook",
 		"slardar_slithereen_crush",
 		"viper_corrosive_skin",
+		"queenofpain_scream_of_pain",
 	}
 
 	for _, skillname in pairs(MagicalDamageFromMainAtt) do 
@@ -402,7 +404,8 @@ function Radiance( keys )
 	local caster 			= keys.caster
 	local target 			= keys.target
 	local damage 			= keys.damage
-
+	local main_att 			= caster:GetPrimaryAttribute()
+	
 	if not ability then 
 		print("null ability for radiance ")
 		return 
@@ -410,7 +413,6 @@ function Radiance( keys )
 	
 	local pct 				= ability:GetSpecialValueFor("aura_damage_stats")
 
-	print("radiance damage 1")
 
 	if not ability or not caster or not target or not damage or not pct then return end
 
@@ -420,9 +422,13 @@ function Radiance( keys )
 		caster = caster:GetAssignedHero() 
 	end
 
-	print("radiance damage 2")
-
-	Util:DealDamageFromStats(target, caster, DAMAGE_TYPE_MAGICAL, pct, pct, pct, false)
+	if main_att == DOTA_ATTRIBUTE_STRENGTH then 
+		Util:DealDamageFromStats(target, caster, DAMAGE_TYPE_MAGICAL, pct, 0, 0, false)
+	elseif main_att == DOTA_ATTRIBUTE_AGILITY then 
+		Util:DealDamageFromStats(target, caster, DAMAGE_TYPE_MAGICAL, 0, pct, 0, false)
+	elseif main_att == DOTA_ATTRIBUTE_INTELLECT then 
+		Util:DealDamageFromStats(target, caster, DAMAGE_TYPE_MAGICAL, 0, 0, pct, false)
+	end
 end
 
 function PercentDamage:ListenAbilityCallback(ability_name, func) -- return callback id

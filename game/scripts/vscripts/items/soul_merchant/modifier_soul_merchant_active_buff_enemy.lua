@@ -28,7 +28,10 @@ end
 function modifier_soul_merchant_active_buff_enemy:GetTexture()
     return "../items/soul_merchant_big"
 end
-
+--------------------------------------------------------------------------------
+function modifier_soul_merchant_active_buff_enemy:IsPurgeException()
+    return true
+end
 --------------------------------------------------------------------------------
 function modifier_soul_merchant_active_buff_enemy:OnCreated(kv)
     local caster = self:GetAbility():GetCaster()

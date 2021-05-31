@@ -88,7 +88,7 @@
 		"02"
 		{
 			"var_type"				"FIELD_INTEGER"
-			"damage_per_second"		"25 30 36 42 48 54 60"
+			"damage_per_second"		"20 25 30 40 45 50 55"
 			"LinkedSpecialBonus"	"special_bonus_unique_dark_seer"
 		}
 		"03"
@@ -291,4 +291,26 @@
 		}
 	}
 	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+}
+// Ability: Special Bonus
+//=================================================================================================================
+"special_bonus_unique_dark_seer_13"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"ID"					"736"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"					"FIELD_FLOAT"
+			"value"				"10"
+			"ad_linked_ability"			"dark_seer_wall_of_replica"				// this is the ability this bonus affects.  This line is required for Ability Draft to correctly choose talents.
+		}
+	}
 }

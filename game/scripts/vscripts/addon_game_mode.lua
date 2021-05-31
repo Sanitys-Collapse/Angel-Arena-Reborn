@@ -87,7 +87,7 @@ local forbidden_items_for_clones = {
 
 local illusion_bug_crash =
 {
-	["npc_dota_hero_visage"] = 1,
+	["npc_dota_hero_dawnbreaker"] = 1,
 	["npc_dota_hero_weaver"] = 1,
 }
 

@@ -225,3 +225,26 @@
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityCooldown"				"1.0"
 }
+//=================================================================================================================
+// Ability: Special Bonus
+//=================================================================================================================
+"special_bonus_unique_naga_siren_5"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"ID"					"601"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"value"				"10"
+			"ad_linked_ability"			"naga_siren_song_of_the_siren"				// this is the ability this bonus affects.  This line is required for Ability Draft to correctly choose talents.
+		}
+	}
+}

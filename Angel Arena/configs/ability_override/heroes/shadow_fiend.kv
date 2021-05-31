@@ -15,7 +15,7 @@
 
 	// Cost
 	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"				"75"
+	"AbilityManaCost"				"75 85 95 105 115 125 135"
 	
 	"AbilitySpecial"
 	{
@@ -43,18 +43,18 @@
 		"05"
 		{
 			"var_type"			"FIELD_INTEGER"
-			"stack_bonus_damage" "35 45 50 55 60 65 70"
+			"stack_bonus_damage" "45 50 55 60 65 70 75"
 			"CalculateSpellDamageTooltip"	"0"
 		}
 		"06"
 		{
 			"var_type"			"FIELD_FLOAT"
-			"duration"	"4"
+			"duration"			"5"
 		}
 		"07"
 		{
 			"var_type"						"FIELD_FLOAT"
-			"damage_by_attack"				"0.5"
+			"damage_by_attack"				"1.0"
 		}
 	}
 }
@@ -77,7 +77,7 @@
 	// Cost
 	//-------------------------------------------------------------------------------------------------------------
 	
-	"AbilityManaCost"				"75"
+	"AbilityManaCost"				"75 85 95 105 115 125 135"
 	
 	"AbilitySpecial"
 	{
@@ -105,18 +105,18 @@
 		"05"
 		{
 			"var_type"			            "FIELD_INTEGER"
-			"stack_bonus_damage"            "35 45 50 55 60 65 70"
+			"stack_bonus_damage"            "45 50 55 60 65 70 75"
 			"CalculateSpellDamageTooltip"	"0"
 		}
 		"06"
 		{
 			"var_type"			"FIELD_FLOAT"
-			"duration"	"4"
+			"duration"			"5"
 		}
 		"07"
 		{
 			"var_type"						"FIELD_FLOAT"
-			"damage_by_attack"				"0.5"
+			"damage_by_attack"				"1.0"
 		}
 	}
 }
@@ -138,7 +138,7 @@
 
 	// Cost
 	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"				"75"
+	"AbilityManaCost"				"75 85 95 105 115 125 135"
 	
 	"AbilitySpecial"
 	{
@@ -166,18 +166,18 @@
 		"05"
 		{
 			"var_type"			            "FIELD_INTEGER"
-			"stack_bonus_damage"            "35 45 50 55 60 65 70"
+			"stack_bonus_damage"            "45 50 55 60 65 70 75"
 			"CalculateSpellDamageTooltip"	"0"
 		}
 		"06"
 		{
 			"var_type"			"FIELD_FLOAT"
-			"duration"	"4"
+			"duration"			"5"
 		}
 		"07"
 		{
 			"var_type"						"FIELD_FLOAT"
-			"damage_by_attack"				"0.5"
+			"damage_by_attack"				"1.0"
 		}
 	}
 }
@@ -196,14 +196,14 @@
 		"01"
 		{
 			"var_type"						"FIELD_INTEGER"
-			"necromastery_damage_per_soul"	"3"
+			"necromastery_damage_per_soul"	"4"
 			"CalculateSpellDamageTooltip"	"0"
 			"LinkedSpecialBonus"			"special_bonus_unique_nevermore_1"
 		}
 		"02"
 		{
 			"var_type"						"FIELD_INTEGER"
-			"necromastery_max_souls"		"10 13 16 20 23 26 30"
+			"necromastery_max_souls"		"8 10 12 14 16 18 20"
 			"LinkedSpecialBonus"			"special_bonus_unique_nevermore_4"
 		}
 		"03"
@@ -214,7 +214,7 @@
 		"04"
 		{
 			"var_type"						    "FIELD_INTEGER"
-			"necromastery_max_souls_scepter"    "15 20 25 30 35 40 45"
+			"necromastery_max_souls_scepter"    "13 15 17 19 21 23 25"
 			"RequiresScepter"			        "1"
 		}
 	}
@@ -225,7 +225,6 @@
 //=================================================================================================================
 "nevermore_dark_lord"
 {
-	"BaseClass"						"ability_datadriven"
 	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	"AbilityTextureName"			"nevermore_dark_lord"
 	"MaxLevel"						"7"
@@ -248,73 +247,9 @@
 			"var_type"						"FIELD_INTEGER"
 			"presence_radius"				"1200"
 		}
-		"03"
-		{
-			"var_type"						"FIELD_FLOAT"
-			"disarmor_percent"				"5 7 9 11 13 15 17"
-		}
 	}
 	
-	"Modifiers"
-	{
-		"modifier_passive_dark_lord_aura_emitter"
-		{
-			"Passive"	"1"
-			"IsHidden"	"1"
-			"IsPurgable"	"0"
-			
-			"Aura" 					"modifier_passive_dark_lord_aura"
-			"Aura_Radius" 			"%presence_radius"
-			"Aura_Teams" 			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-			"Aura_Types" 			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-			"Aura_Flags" 			"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-			"Aura_ApplyToCaster" 	"0"
-		}
-		
-		"modifier_passive_dark_lord_aura"
-		{
-			"IsHidden"		"1"
-			"Passive"		"0"
-			
-			"ThinkInterval" 		"0.5"
-			"OnIntervalThink"
-			{
-				"RunScript"
-				{
-					"ScriptFile"		"heroes/nevermore/dark_lord.lua"
-					"Function"			"Disarmor"
-					"ModifierName"		"modifier_passive_dark_lord_disarmor"
-					"Disarmor_const"	"%presence_armor_reduction"
-					"Disarmor_pct"		"%disarmor_percent"
-				}
-			}
-		}
-		
-		"modifier_passive_dark_lord_disarmor"
-		{
-			"IsDebuff"	"1"
-			"Passive"	"0"
-			"IsHidden"	"0"
-			
-			"Properties"
-			{
-				"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"			"-1"
-			}
-			
-			"ThinkInterval" 		"0.2"
-			"OnIntervalThink"
-			{
-				"RunScript"
-				{
-					"ScriptFile"		"heroes/nevermore/dark_lord.lua"
-					"Function"			"CheckAura"
-					"ModifierName"		"modifier_passive_dark_lord_aura"
-					"ModifierRemove"	"modifier_passive_dark_lord_disarmor"
-				}
-			}
-		}
-		
-	}
+	
 }
 
 //=================================================================================================================
@@ -330,11 +265,11 @@
 	// Time		
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityCooldown"				"60"
-	"AbilityDuration"				"5.0 5.0 5.0 5.0 5.0 5.0 5.0"
+	"AbilityDuration"				"5.0"
 
 	// Damage.
 	//-------------------------------------------------------------------------------------------------------------
-	"AbilityDamage"					"85 100 115 125 140 165 200"
+	"AbilityDamage"					"165 185 205 225 255 285 315"
 
 	// Cost
 	//-------------------------------------------------------------------------------------------------------------
@@ -347,13 +282,13 @@
 	{
 		"01"
 		{
-			"var_type"			"FIELD_INTEGER"
-			"requiem_radius"	"975"		
+			"var_type"					"FIELD_INTEGER"
+			"requiem_radius"			"975"		
 		}
 		"02"
 		{
-			"var_type"			    "FIELD_INTEGER"
-			"requiem_reduction_ms"	"-25"
+			"var_type"			    	"FIELD_INTEGER"
+			"requiem_reduction_ms"		"-25"
 		}
 		"03"
 		{
@@ -387,13 +322,13 @@
 		}
 		"09"
 		{
-			"var_type"			    "FIELD_INTEGER"
-			"requiem_line_speed"	"800"
+			"var_type"			    	"FIELD_INTEGER"
+			"requiem_line_speed"		"800"
 		}
 		"10"
 		{
-			"var_type"				"FIELD_FLOAT"
-			"soul_death_release"	"0.5"
+			"var_type"					"FIELD_FLOAT"
+			"soul_death_release"		"0.5"
 		}
 		"11"
 		{
@@ -407,6 +342,28 @@
 			"requiem_damage_pct_scepter"	"50"
 			"RequiresScepter"			    "1"
             "CalculateSpellDamageTooltip"	"0"
+		}
+	}
+}
+// Ability: Special Bonus
+//=================================================================================================================
+"special_bonus_unique_nevermore_5"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"ID"					"6912"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+	"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"value"				"-10"
+			"ad_linked_ability"			"nevermore_dark_lord"				// this is the ability this bonus affects.  This line is required for Ability Draft to correctly choose talents.
 		}
 	}
 }
